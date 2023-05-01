@@ -1,0 +1,37 @@
+{
+    "name": "esp8266_restapi",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "format:check": "prettier --check .",
+        "format:write": "prettier --write .",
+        "lint:check": "eslint .",
+        "lint:fix": "eslint --fix .",
+        "dev": "npx nodemon"
+    },
+    "keywords": [
+        "IoT",
+        "ESP8266",
+        "MongoDB",
+        "REST API"
+    ],
+    "author": "Krzysztof Hewelt",
+    "license": "MIT",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^16.0.3",
+        "express": "^4.18.2",
+        "mongodb": "^5.3.0"
+    },
+    "devDependencies": {
+        "eslint": "^8.39.0",
+        "eslint-config-airbnb-base": "^15.0.0",
+        "eslint-config-prettier": "^8.8.0",
+        "eslint-config-standard": "^17.0.0",
+        "eslint-plugin-import": "^2.27.5",
+        "eslint-plugin-n": "^15.7.0",
+        "eslint-plugin-promise": "^6.1.1",
+        "prettier": "^2.8.8"
+    }
+}
