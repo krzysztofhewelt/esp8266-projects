@@ -71,6 +71,11 @@ void onMqttConnect(bool sessionPresent) {
   Serial.println("Connected to MQTT.");
   Serial.print("Session present: ");
   Serial.println(sessionPresent);
+
+  // Subscribe MQTT LEDs topics
+  mqttClient.subscribe(MQTT_SUB_RED_LED, 1);
+  mqttClient.subscribe(MQTT_SUB_YELLOW_LED, 1);
+  mqttClient.subscribe(MQTT_SUB_GREEN_LED, 1);
 }
 
 void onMqttDisconnect(AsyncMqttClientDisconnectReason reason) {
@@ -123,8 +128,8 @@ void setup() {
   wifiDisconnectHandler = WiFi.onStationModeDisconnected(onWifiDisconnect);
 
   mqttClient.onConnect(onMqttConnect);
-  mqttClient.onDisconnect(onMqttDisconnect);
   mqttClient.onMessage(onMqttMessage);
+  mqttClient.onDisconnect(onMqttDisconnect);
   mqttClient.setServer(MQTT_HOST, MQTT_PORT);
   
   connectToWifi();
@@ -132,11 +137,6 @@ void setup() {
   pinMode(GREEN_LED, OUTPUT);
   pinMode(RED_LED, OUTPUT);
   pinMode(YELLOW_LED, OUTPUT);
-
-  // Subscribe MQTT LEDs topics
-  mqttClient.subscribe(MQTT_SUB_RED_LED, 1);
-  mqttClient.subscribe(MQTT_SUB_YELLOW_LED, 1);
-  mqttClient.subscribe(MQTT_SUB_GREEN_LED, 1);
 }
 
 void loop() {
