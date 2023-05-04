@@ -3,10 +3,10 @@ module.exports = {
         es2021: true,
         node: true,
     },
-    extends: 'standard',
+    extends: ["standard", "prettier"],
     overrides: [],
     parserOptions: {
-        ecmaVersion: 'latest',
+        ecmaVersion: "latest",
     },
     rules: {},
 }

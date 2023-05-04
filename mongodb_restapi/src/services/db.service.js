@@ -3,9 +3,7 @@ const { MongoClient } = require("mongodb")
 let client = null
 async function connect(url) {
     if (client == null) {
-        client = await MongoClient.connect(url, {
-            useNewUrlParser: true,
-        })
+        client = await MongoClient.connect(url)
     }
 }
 

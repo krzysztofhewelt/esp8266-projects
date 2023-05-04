@@ -31,4 +31,5 @@ client
 // Close database connection on app stop
 process.on("SIGINT", function () {
     client.close()
+    process.exit(1)
 })
