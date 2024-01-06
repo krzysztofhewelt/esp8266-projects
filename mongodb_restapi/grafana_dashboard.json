@@ -1,0 +1,1124 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 2,
+  "id": 1,
+  "links": [],
+  "liveNow": true,
+  "panels": [
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 0,
+        "y": 0
+      },
+      "id": 123129,
+      "options": {
+        "content": "## Device name:\n## {{{dev_name}}}\n\n<table style=\"width: 100%; border: 0; margin-top: 24px;\">\n  <tr>\n    <td style=\"border:0; font-weight: bold;\">IP</td>\n    <td style=\"border:0;\">Chip ID</td>\n  </tr>\n  <tr>\n    <td style=\"border:0;\">{{{ip}}}</td>\n    <td style=\"border:0;\">{{{chip_id}}}</td>\n  </tr>\n</table>",
+        "defaultContent": "The query didn't return any results.",
+        "editor": {
+          "format": "auto",
+          "height": 307,
+          "language": "markdown"
+        },
+        "editors": [],
+        "everyRow": true,
+        "helpers": "",
+        "styles": ""
+      },
+      "targets": [
+        {
+          "cacheDurationSeconds": 300,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "eb5f7ec8-1931-48d4-b155-c0d033995ed6"
+          },
+          "fields": [
+            {
+              "jsonPath": "$.[0].['metadata'].['IP']",
+              "name": "ip"
+            },
+            {
+              "jsonPath": "$.[0].['metadata'].['chip_id']",
+              "language": "jsonpath",
+              "name": "chip_id"
+            },
+            {
+              "jsonPath": "$.[0].['metadata'].['name']",
+              "language": "jsonpath",
+              "name": "dev_name"
+            }
+          ],
+          "method": "GET",
+          "params": [],
+          "queryParams": "",
+          "refId": "A",
+          "urlPath": "/api/measurements/$device"
+        }
+      ],
+      "type": "marcusolsson-dynamictext-panel"
+    },
+    {
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "eb5f7ec8-1931-48d4-b155-c0d033995ed6"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "Current temperature",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 8,
+        "y": 0
+      },
+      "id": 123140,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.5.1",
+      "targets": [
+        {
+          "cacheDurationSeconds": 300,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "eb5f7ec8-1931-48d4-b155-c0d033995ed6"
+          },
+          "fields": [
+            {
+              "jsonPath": "$.['temperature']"
+            }
+          ],
+          "method": "GET",
+          "queryParams": "",
+          "refId": "A",
+          "urlPath": "/api/measurements/$device"
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "eb5f7ec8-1931-48d4-b155-c0d033995ed6"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "Current humidity",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 12,
+        "y": 0
+      },
+      "id": 123141,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.5.1",
+      "targets": [
+        {
+          "cacheDurationSeconds": 300,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "eb5f7ec8-1931-48d4-b155-c0d033995ed6"
+          },
+          "fields": [
+            {
+              "jsonPath": "$.['humidity']"
+            }
+          ],
+          "method": "GET",
+          "queryParams": "",
+          "refId": "A",
+          "urlPath": "/api/measurements/$device"
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-simple-json-datasource",
+        "uid": "b3451232-337d-4696-9799-787b439172d6"
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 16,
+        "y": 0
+      },
+      "id": 123124,
+      "options": {
+        "bgColor": "",
+        "clockType": "24 hour",
+        "countdownSettings": {
+          "endCountdownTime": "2023-05-01T03:08:34+02:00",
+          "endText": "00:00:00"
+        },
+        "countupSettings": {
+          "beginCountupTime": "2023-05-01T03:08:34+02:00",
+          "beginText": "00:00:00"
+        },
+        "dateSettings": {
+          "dateFormat": "YYYY-MM-DD",
+          "fontSize": "20px",
+          "fontWeight": "normal",
+          "locale": "",
+          "showDate": false
+        },
+        "mode": "time",
+        "refresh": "sec",
+        "timeSettings": {
+          "fontSize": "92px",
+          "fontWeight": "bold"
+        },
+        "timezone": "",
+        "timezoneSettings": {
+          "fontSize": "12px",
+          "fontWeight": "normal",
+          "showTimezone": false,
+          "zoneFormat": "offsetAbbv"
+        }
+      },
+      "pluginVersion": "2.1.3",
+      "title": "Current time",
+      "type": "grafana-clock-panel"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "line"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 20,
+        "x": 0,
+        "y": 5
+      },
+      "id": 123125,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "cacheDurationSeconds": 60,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "eb5f7ec8-1931-48d4-b155-c0d033995ed6"
+          },
+          "fields": [
+            {
+              "jsonPath": "$.['timestamp']",
+              "type": "time"
+            },
+            {
+              "jsonPath": "$.['temperature']",
+              "language": "jsonpath",
+              "name": ""
+            },
+            {
+              "jsonPath": "$.['humidity']",
+              "language": "jsonpath",
+              "name": ""
+            }
+          ],
+          "method": "GET",
+          "params": [],
+          "queryParams": "",
+          "refId": "A",
+          "urlPath": "/api/measurements/$device"
+        }
+      ],
+      "title": "Sensors",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "Average temperature",
+          "mappings": [],
+          "max": 40,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 20,
+        "y": 5
+      },
+      "id": 123136,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": false
+      },
+      "pluginVersion": "9.5.1",
+      "targets": [
+        {
+          "cacheDurationSeconds": 300,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "eb5f7ec8-1931-48d4-b155-c0d033995ed6"
+          },
+          "fields": [
+            {
+              "jsonPath": "$.['temperature']"
+            }
+          ],
+          "method": "GET",
+          "queryParams": "",
+          "refId": "A",
+          "urlPath": "/api/measurements/$device/${__from:date:iso}/${__to:date:iso}"
+        }
+      ],
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "eb5f7ec8-1931-48d4-b155-c0d033995ed6"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "Average humidity",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 20,
+        "y": 10
+      },
+      "id": 123137,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": false
+      },
+      "pluginVersion": "9.5.1",
+      "targets": [
+        {
+          "cacheDurationSeconds": 300,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "eb5f7ec8-1931-48d4-b155-c0d033995ed6"
+          },
+          "fields": [
+            {
+              "jsonPath": "$.['humidity']"
+            }
+          ],
+          "method": "GET",
+          "queryParams": "",
+          "refId": "A",
+          "urlPath": "/api/measurements/$device/${__from:date:iso}/${__to:date:iso}"
+        }
+      ],
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "description": "",
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 0,
+        "y": 15
+      },
+      "id": 123126,
+      "options": {
+        "backgroundColor": "green",
+        "contentType": "application/json",
+        "foregroundColor": "#ffffff",
+        "icon": "cog",
+        "isAuth": false,
+        "method": "POST",
+        "orientation": "left",
+        "payload": "{}",
+        "text": "ON",
+        "type": "header",
+        "url": "http://172.22.48.1:8000/api/leds/$device/green/1/",
+        "variant": "custom"
+      },
+      "title": "GREEN LED",
+      "transparent": true,
+      "type": "cloudspout-button-panel"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "description": "",
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 3,
+        "y": 15
+      },
+      "id": 123128,
+      "options": {
+        "backgroundColor": "green",
+        "contentType": "application/json",
+        "foregroundColor": "#ffffff",
+        "icon": "cog",
+        "isAuth": false,
+        "method": "POST",
+        "orientation": "left",
+        "payload": "{}",
+        "text": "ON",
+        "type": "header",
+        "url": "http://172.22.48.1:8000/api/leds/$device/yellow/1/",
+        "variant": "custom"
+      },
+      "title": "YELLOW LED",
+      "transparent": true,
+      "type": "cloudspout-button-panel"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "description": "",
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 6,
+        "y": 15
+      },
+      "id": 123133,
+      "options": {
+        "backgroundColor": "green",
+        "contentType": "application/json",
+        "foregroundColor": "#ffffff",
+        "icon": "cog",
+        "isAuth": false,
+        "method": "POST",
+        "orientation": "left",
+        "payload": "{}",
+        "text": "ON",
+        "type": "header",
+        "url": "http://172.22.48.1:8000/api/leds/$device/red/1/",
+        "variant": "custom"
+      },
+      "title": "RED LED",
+      "transparent": true,
+      "type": "cloudspout-button-panel"
+    },
+    {
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "eb5f7ec8-1931-48d4-b155-c0d033995ed6"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": true,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 60,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "max": -80,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 11,
+        "x": 9,
+        "y": 15
+      },
+      "id": 123139,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "cacheDurationSeconds": 300,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "eb5f7ec8-1931-48d4-b155-c0d033995ed6"
+          },
+          "fields": [
+            {
+              "jsonPath": "$.['timestamp']",
+              "type": "time"
+            },
+            {
+              "jsonPath": "$.['wifi_rssi']",
+              "language": "jsonpath",
+              "name": "",
+              "type": "number"
+            }
+          ],
+          "method": "GET",
+          "queryParams": "",
+          "refId": "A",
+          "urlPath": "/api/measurements/$device"
+        }
+      ],
+      "title": "WiFi signal",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "eb5f7ec8-1931-48d4-b155-c0d033995ed6"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "Total probes",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 4,
+        "x": 20,
+        "y": 15
+      },
+      "id": 123138,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "count"
+          ],
+          "fields": "/.*/",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.5.1",
+      "targets": [
+        {
+          "cacheDurationSeconds": 300,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "eb5f7ec8-1931-48d4-b155-c0d033995ed6"
+          },
+          "fields": [
+            {
+              "jsonPath": "$.['timestamp']"
+            }
+          ],
+          "method": "GET",
+          "queryParams": "",
+          "refId": "A",
+          "urlPath": "/api/measurements/$device"
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 0,
+        "y": 18
+      },
+      "id": 123127,
+      "options": {
+        "backgroundColor": "red",
+        "contentType": "application/json",
+        "icon": "cog",
+        "isAuth": false,
+        "method": "POST",
+        "orientation": "left",
+        "text": "OFF",
+        "type": "header",
+        "url": "http://172.22.48.1:8000/api/leds/$device/green/0",
+        "variant": "custom"
+      },
+      "transparent": true,
+      "type": "cloudspout-button-panel"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "description": "",
+      "gridPos": {
+        "h": 2,
+        "w": 2,
+        "x": 3,
+        "y": 18
+      },
+      "id": 123131,
+      "options": {
+        "backgroundColor": "red",
+        "contentType": "application/json",
+        "foregroundColor": "#ffffff",
+        "icon": "cog",
+        "isAuth": false,
+        "method": "POST",
+        "orientation": "left",
+        "payload": "{}",
+        "text": "OFF",
+        "type": "header",
+        "url": "http://172.22.48.1:8000/api/leds/$device/yellow/0/",
+        "variant": "custom"
+      },
+      "transformations": [],
+      "transparent": true,
+      "type": "cloudspout-button-panel"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "description": "",
+      "gridPos": {
+        "h": 2,
+        "w": 2,
+        "x": 6,
+        "y": 18
+      },
+      "id": 123134,
+      "options": {
+        "backgroundColor": "red",
+        "contentType": "application/json",
+        "foregroundColor": "#ffffff",
+        "icon": "cog",
+        "isAuth": false,
+        "method": "POST",
+        "orientation": "left",
+        "payload": "{}",
+        "text": "OFF",
+        "type": "header",
+        "url": "http://172.22.48.1:8000/api/leds/$device/red/0/",
+        "variant": "custom"
+      },
+      "transparent": true,
+      "type": "cloudspout-button-panel"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 0,
+        "y": 20
+      },
+      "id": 123130,
+      "interval": "1s",
+      "maxDataPoints": 10000,
+      "options": {
+        "content": "{{#if (eq status 0)}}\r\n<span style=\"color: red; font-weight: bold;\"><span style=\"color: green;\">Green LED</span> is OFF.</span>\r\n{{else}}\r\n<span style=\"color: green; font-weight: bold;\">Green LED is ON.</span>\r\n{{/if}}\r\n\r\n{{date last_changed \"YYYY-MM-DD HH:mm:ss\"}}",
+        "defaultContent": "The query didn't return any results.",
+        "editor": {
+          "format": "auto",
+          "height": 200,
+          "language": "html"
+        },
+        "editors": [],
+        "everyRow": true,
+        "helpers": "",
+        "styles": ""
+      },
+      "targets": [
+        {
+          "cacheDurationSeconds": 0,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "eb5f7ec8-1931-48d4-b155-c0d033995ed6"
+          },
+          "fields": [
+            {
+              "jsonPath": "$.[0].['last_changed']",
+              "name": "last_changed",
+              "type": "time"
+            },
+            {
+              "jsonPath": "$.[0].['status']",
+              "language": "jsonpath",
+              "name": "status",
+              "type": "number"
+            }
+          ],
+          "method": "GET",
+          "queryParams": "",
+          "refId": "A",
+          "urlPath": "/api/leds/$device"
+        }
+      ],
+      "transparent": true,
+      "type": "marcusolsson-dynamictext-panel"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 3,
+        "y": 20
+      },
+      "id": 123132,
+      "interval": "1s",
+      "maxDataPoints": 10000,
+      "options": {
+        "content": "{{#if (eq status 0)}}\r\n<span style=\"color: red; font-weight: bold;\"><span style=\"color: yellow;\">Yellow LED</span> is OFF.</span>\r\n{{else}}\r\n<span style=\"color: green; font-weight: bold;\"><span style=\"color: yellow;\">Yellow LED</span> is ON.</span>\r\n{{/if}}\r\n\r\n{{date last_changed \"YYYY-MM-DD HH:mm:ss\"}}",
+        "defaultContent": "The query didn't return any results.",
+        "editor": {
+          "format": "auto",
+          "height": 200,
+          "language": "html"
+        },
+        "editors": [],
+        "everyRow": true,
+        "helpers": "",
+        "styles": ""
+      },
+      "targets": [
+        {
+          "cacheDurationSeconds": 0,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "eb5f7ec8-1931-48d4-b155-c0d033995ed6"
+          },
+          "fields": [
+            {
+              "jsonPath": "$.[2].['last_changed']",
+              "name": "last_changed",
+              "type": "time"
+            },
+            {
+              "jsonPath": "$.[2].['status']",
+              "language": "jsonpath",
+              "name": "status",
+              "type": "number"
+            }
+          ],
+          "method": "GET",
+          "queryParams": "",
+          "refId": "A",
+          "urlPath": "/api/leds/$device"
+        }
+      ],
+      "transparent": true,
+      "type": "marcusolsson-dynamictext-panel"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
+      "description": "",
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 6,
+        "y": 20
+      },
+      "id": 123135,
+      "interval": "1s",
+      "maxDataPoints": 10000,
+      "options": {
+        "content": "{{#if (eq status 0)}}\r\n<span style=\"color: red; font-weight: bold;\">Red LED is OFF.</span>\r\n{{else}}\r\n<span style=\"color: green; font-weight: bold;\"><span style=\"color: red;\">Red LED</span> is ON.</span>\r\n{{/if}}\r\n\r\n{{date last_changed \"YYYY-MM-DD HH:mm:ss\"}}",
+        "defaultContent": "The query didn't return any results.",
+        "editor": {
+          "format": "auto",
+          "height": 200,
+          "language": "html"
+        },
+        "editors": [],
+        "everyRow": true,
+        "helpers": "",
+        "styles": ""
+      },
+      "targets": [
+        {
+          "cacheDurationSeconds": 0,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "eb5f7ec8-1931-48d4-b155-c0d033995ed6"
+          },
+          "fields": [
+            {
+              "jsonPath": "$.[1].['last_changed']",
+              "name": "last_changed",
+              "type": "time"
+            },
+            {
+              "jsonPath": "$.[1].['status']",
+              "language": "jsonpath",
+              "name": "status",
+              "type": "number"
+            }
+          ],
+          "method": "GET",
+          "queryParams": "",
+          "refId": "A",
+          "urlPath": "/api/leds/$device"
+        }
+      ],
+      "transparent": true,
+      "type": "marcusolsson-dynamictext-panel"
+    }
+  ],
+  "refresh": "10s",
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "ESP8266",
+          "value": "13141425"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "Chip ID",
+        "multi": false,
+        "name": "device",
+        "options": [
+          {
+            "selected": true,
+            "text": "ESP8266",
+            "value": "13141425"
+          }
+        ],
+        "query": "ESP8266 : 13141425",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-5m",
+    "to": "now"
+  },
+  "timepicker": {
+    "hidden": false,
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ],
+    "type": "timepicker"
+  },
+  "timezone": "browser",
+  "title": "Home",
+  "uid": "f6fd417b-e56d-43a6-9e21-932530c59710",
+  "version": 54,
+  "weekStart": ""
+}
